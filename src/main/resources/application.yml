@@ -2,20 +2,21 @@ spring:
   application:
     name: yellow-ribbon-core
   datasource:
-    url: jdbc:h2:mem:yellowribbon;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:yellow_ribbon}
+    username: ${DB_USER:yellow_ribbon}
+    password: ${DB_PASSWORD:yellow_ribbon}
   jpa:
     hibernate:
       ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     open-in-view: false
     properties:
       hibernate:
         format_sql: true
-  h2:
-    console:
-      enabled: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
 
 server:
   port: 8080
