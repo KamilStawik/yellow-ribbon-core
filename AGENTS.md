@@ -35,3 +35,9 @@
 - Follow `config/checkstyle/checkstyle.xml`: Java lines are at most 120 characters, avoid wildcard imports, and use
   braces and whitespace consistently.
 - Keep imports explicit; do not use star imports.
+
+## Workspace architecture
+
+- The parent yellow-ribbon directory contains three separate repositories: yellow-ribbon-core is the backend for the application, yellow-ribbon-back-office is the frontend for managing appointments and therapists, and yellow-ribbon-ui is the frontend patients use to book appointments.
+- Treat this repository as the backend source of truth for server-side behavior and API contracts.
+- Keep changes scoped to the repository relevant to the task. Coordinate API contract changes with both frontend repositories when a task spans the full application.
